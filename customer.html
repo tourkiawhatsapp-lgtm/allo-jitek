@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>آلو جيتك - حساب الزبون</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#07111f;
+    color:#fff;
+    min-height:100vh;
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    margin:auto;
+    padding:18px;
+}
+
+.header{
+    text-align:center;
+    padding:20px 0;
+}
+
+.car{
+    font-size:55px;
+    margin-bottom:5px;
+}
+
+.logo{
+    font-size:42px;
+    font-weight:bold;
+    color:#ff9f1c;
+    margin:5px 0;
+}
+
+.subtitle{
+    color:#ffd166;
+    font-size:20px;
+}
+
+.card{
+    background:#111f32;
+    border:1px solid #263852;
+    border-radius:25px;
+    padding:20px;
+    margin-bottom:16px;
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+.card-title{
+    color:#ffd166;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-top:13px;
+    color:#fff;
+    font-weight:bold;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:14px;
+    margin-top:7px;
+    background:#091522;
+    color:white;
+    border:1px solid #34445b;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#ff9f1c;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:0;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.primary{
+    background:#ff9f1c;
+    color:#111;
+}
+
+.yellow{
+    background:#ffd166;
+    color:#111;
+}
+
+.dark{
+    background:#304159;
+    color:#fff;
+}
+
+.green{
+    background:#57cc99;
+    color:#07111f;
+}
+
+.red{
+    background:#ff6b6b;
+    color:#111;
+}
+
+.map{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    background:#ffd166;
+    color:#111;
+    padding:13px;
+    border-radius:12px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.info{
+    background:#091522;
+    border-radius:14px;
+    padding:14px;
+    margin-top:12px;
+    line-height:1.8;
+}
+
+.success{
+    color:#70e000;
+}
+
+.error{
+    color:#ff6b6b;
+}
+
+.muted{
+    color:#aebbd0;
+    font-size:14px;
+}
+
+.status{
+    border-radius:16px;
+    padding:17px;
+    text-align:center;
+    background:#091522;
+    margin-top:12px;
+}
+
+.status-icon{
+    font-size:38px;
+}
+
+.status-title{
+    color:#ffd166;
+    font-size:20px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.order{
+    background:#091522;
+    border:1px solid #2d3c52;
+    border-radius:17px;
+    padding:15px;
+    margin-top:12px;
+}
+
+.order-number{
+    color:#ff9f1c;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.row{
+    display:flex;
+    gap:8px;
+}
+
+.row button{
+    flex:1;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.profile-line{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #263852;
+}
+
+.notification-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.switch{
+    width:55px;
+    height:30px;
+    appearance:none;
+    background:#334155;
+    border-radius:30px;
+    position:relative;
+    cursor:pointer;
+}
+
+.switch:checked{
+    background:#ff9f1c;
+}
+
+.switch:before{
+    content:"";
+    position:absolute;
+    width:24px;
+    height:24px;
+    background:white;
+    border-radius:50%;
+    top:3px;
+    right:4px;
+    transition:.2s;
+}
+
+.switch:checked:before{
+    right:27px;
+}
+
+.toast{
+    position:fixed;
+    left:15px;
+    right:15px;
+    bottom:18px;
+    background:#ff9f1c;
+    color:#111;
+    padding:15px;
+    border-radius:14px;
+    text-align:center;
+    font-weight:bold;
+    display:none;
+    z-index:9999;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<div class="car">🚗</div>
+
+<div class="logo">
+آلو جيتك
+</div>
+
+<div class="subtitle">
+توصيل سريع
+</div>
+
+</div>
+
+
+
+<!-- ======================
+      الطلب الجديد
+====================== -->
+
+<div class="card">
+
+<div class="card-title">
+📦 طلب توصيل جديد
+</div>
+
+
+<label>
+اسم المرسل
+<input
+id="senderName"
+type="text"
+placeholder="أدخل اسم المرسل">
+</label>
+
+
+<label>
+اسم المستلم
+<input
+id="receiverName"
+type="text"
+placeholder="أدخل اسم المستلم">
+</label>
+
+
+<label>
+هاتف المستلم
+<input
+id="receiverPhone"
+type="tel"
+placeholder="05xxxxxxxx">
+</label>
+
+
+<label>
+تاريخ التوصيل
+<input
+id="deliveryDate"
+type="date">
+</label>
+
+
+<label>
+وقت التوصيل من
+<input
+id="deliveryFrom"
+type="time">
+</label>
+
+
+<label>
+وقت التوصيل إلى
+<input
+id="deliveryTo"
+type="time">
+</label>
+
+
+<label>
+ملاحظات
+<textarea
+id="notes"
+rows="3"
+placeholder="أي ملاحظات إضافية..."></textarea>
+</label>
+
+
+<button
+class="yellow"
+onclick="getGPS()">
+
+📍 تحديد موقعي بدقة
+
+</button>
+
+
+<div
+id="gpsBox"
+class="info">
+
+لم يتم تحديد الموقع بعد.
+
+</div>
+
+
+<a
+id="mapLink"
+class="map hidden"
+target="_blank">
+
+🗺️ فتح موقعي في Google Maps
+
+</a>
+
+
+<button
+id="sendButton"
+class="primary"
+onclick="sendOrder()">
+
+🚀 إرسال الطلبية
+
+</button>
+
+
+<div
+id="result"
+class="info">
+
+</div>
+
+</div>
+
+
+
+<!-- ======================
+      متابعة الطلب الحالي
+====================== -->
+
+<div class="card">
+
+<div class="card-title">
+🔄 متابعة طلبيتي
+</div>
+
+<div id="currentOrder">
+
+<p class="muted">
+لا توجد طلبية نشطة حاليًا.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- ======================
+      أرشيف الطلبات
+====================== -->
+
+<div class="card">
+
+<div class="card-title">
+📚 أرشيف طلبياتي
+</div>
+
+<div id="archive">
+
+<p class="muted">
+لا توجد طلبيات سابقة.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- ======================
+      الحساب
+====================== -->
+
+<div class="card">
+
+<div class="card-title">
+👤 حسابي
+</div>
+
+
+<div class="profile-line">
+
+<span>
+حالة الحساب
+</span>
+
+<strong
+id="accountStatus">
+
+جارٍ التحميل...
+
+</strong>
+
+</div>
+
+
+<div class="profile-line">
+
+<span>
+معرّف الحساب
+</span>
+
+<span
+id="uidText"
+class="muted">
+
+...
+
+</span>
+
+</div>
+
+
+<button
+class="dark"
+onclick="toggleAccountSettings()">
+
+⚙️ إعدادات الحساب
+
+</button>
+
+
+<div
+id="accountSettings"
+class="hidden">
+
+
+<label>
+البريد الإلكتروني للحساب
+<input
+id="accountEmail"
+type="email"
+placeholder="example@email.com">
+</label>
+
+
+<label>
+كلمة المرور
+<input
+id="accountPassword"
+type="password"
+placeholder="كلمة مرور قوية">
+</label>
+
+
+<button
+class="primary"
+onclick="upgradeAccount()">
+
+🔐 إنشاء / تحديث بيانات الدخول
+
+</button>
+
+
+<label>
+رقم الهاتف
+<input
+id="accountPhone"
+type="tel"
+placeholder="05xxxxxxxx">
+</label>
+
+
+<button
+class="yellow"
+onclick="savePhone()">
+
+📱 حفظ رقم الهاتف
+
+</button>
+
+
+<p class="muted">
+
+يمكن استخدام رقم الهاتف لاحقًا في نظام المصادقة
+واسترداد الحساب عند ربطه بخدمة الهاتف في Firebase.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ======================
+      الإشعارات
+====================== -->
+
+<div class="card">
+
+<div class="notification-box">
+
+<div>
+
+<div class="card-title">
+🔔 الإشعارات
+</div>
+
+<div class="muted">
+استقبال إشعار عند تغير حالة الطلبية
+</div>
+
+</div>
+
+
+<input
+id="notificationSwitch"
+class="switch"
+type="checkbox"
+onchange="toggleNotifications()">
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div
+id="toast"
+class="toast">
+</div>
+
+
+
+<script type="module">
+
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+
+getAuth,
+onAuthStateChanged,
+signInAnonymously,
+updateProfile,
+updatePassword,
+EmailAuthProvider,
+linkWithCredential
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+
+getDatabase,
+ref,
+set,
+onValue
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyAKnV99bchvO980FrUP1xlyPIb6QXJJe5U",
+
+authDomain:
+"allo-jitek-eloued.firebaseapp.com",
+
+databaseURL:
+"https://allo-jitek-eloued-default-rtdb.firebaseio.com",
+
+projectId:
+"allo-jitek-eloued",
+
+storageBucket:
+"allo-jitek-eloued.firebasestorage.app",
+
+messagingSenderId:
+"16290625978",
+
+appId:
+"1:16290625978:web:79b138fd59305cac8ec583"
+
+};
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getDatabase(app);
+
+
+let currentUser = null;
+
+let gpsData = null;
+
+let orders = {};
+
+let firstOrderLoad = true;
+
+
+
+/* =========================
+   الدخول التلقائي
+========================= */
+
+onAuthStateChanged(
+
+auth,
+
+function(user){
+
+if(user){
+
+currentUser = user;
+
+document.getElementById(
+"uidText"
+).textContent =
+user.uid.substring(0,12)+"...";
+
+
+document.getElementById(
+"accountStatus"
+).textContent =
+user.isAnonymous
+?
+"حساب زبون مؤقت"
+:
+"حساب مسجل";
+
+
+listenOrders();
+
+}
+
+});
+
+
+signInAnonymously(auth)
+.catch(function(error){
+
+showToast(
+"❌ خطأ في حساب الزبون: "+
+error.message
+);
+
+});
+
+
+
+/* =========================
+   GPS
+========================= */
+
+window.getGPS = function(){
+
+if(!navigator.geolocation){
+
+document.getElementById(
+"gpsBox"
+).innerHTML =
+"❌ جهازك لا يدعم GPS.";
+
+return;
+
+}
+
+
+document.getElementById(
+"gpsBox"
+).innerHTML =
+"⏳ جارٍ تحديد موقعك بدقة عالية...";
+
+
+navigator.geolocation.getCurrentPosition(
+
+function(position){
+
+gpsData={
+
+latitude:
+Number(position.coords.latitude),
+
+longitude:
+Number(position.coords.longitude),
+
+accuracy:
+Number(position.coords.accuracy)
+
+};
+
+
+document.getElementById(
+"gpsBox"
+).innerHTML=
+
+"✅ تم تحديد الموقع بنجاح<br>"+
+"خط العرض: "+
+gpsData.latitude+
+"<br>"+
+"خط الطول: "+
+gpsData.longitude+
+"<br>"+
+"دقة الموقع: "+
+Math.round(gpsData.accuracy)+
+" متر";
+
+
+const link =
+document.getElementById(
+"mapLink"
+);
+
+link.href =
+"https://www.google.com/maps?q="+
+gpsData.latitude+
+","+
+gpsData.longitude;
+
+link.classList.remove("hidden");
+
+},
+
+function(error){
+
+document.getElementById(
+"gpsBox"
+).innerHTML=
+"❌ تعذر تحديد الموقع:<br>"+
+error.message;
+
+},
+
+{
+
+enableHighAccuracy:true,
+
+timeout:30000,
+
+maximumAge:0
+
+}
+
+);
+
+};
+
+
+
+/* =========================
+   رقم الطلب
+========================= */
+
+function generateOrderNumber(){
+
+return "AJ-"+
+Date.now().toString(36).toUpperCase()+
+"-"+
+Math.random()
+.toString(36)
+.substring(2,7)
+.toUpperCase();
+
+}
+
+
+
+/* =========================
+   إرسال الطلب
+========================= */
+
+window.sendOrder = async function(){
+
+if(!currentUser){
+
+showToast(
+"⏳ انتظر تحميل حساب الزبون..."
+);
+
+return;
+
+}
+
+
+const senderName =
+document.getElementById(
+"senderName"
+).value.trim();
+
+
+const receiverName =
+document.getElementById(
+"receiverName"
+).value.trim();
+
+
+const receiverPhone =
+document.getElementById(
+"receiverPhone"
+).value.trim();
+
+
+const deliveryDate =
+document.getElementById(
+"deliveryDate"
+).value;
+
+
+const deliveryFrom =
+document.getElementById(
+"deliveryFrom"
+).value;
+
+
+const deliveryTo =
+document.getElementById(
+"deliveryTo"
+).value;
+
+
+const notes =
+document.getElementById(
+"notes"
+).value.trim();
+
+
+if(
+!senderName||
+!receiverName||
+!receiverPhone||
+!deliveryDate||
+!deliveryFrom||
+!deliveryTo
+){
+
+showToast(
+"❌ أكمل جميع البيانات المطلوبة."
+);
+
+return;
+
+}
+
+
+if(deliveryFrom>=deliveryTo){
+
+showToast(
+"❌ وقت البداية يجب أن يكون قبل وقت النهاية."
+);
+
+return;
+
+}
+
+
+if(!gpsData){
+
+showToast(
+"❌ حدد موقعك أولاً."
+);
+
+return;
+
+}
+
+
+const orderNumber =
+generateOrderNumber();
+
+
+const order={
+
+id:
+orderNumber,
+
+customerUid:
+currentUser.uid,
+
+senderName:
+senderName,
+
+receiverName:
+receiverName,
+
+receiverPhone:
+receiverPhone,
+
+deliveryDate:
+deliveryDate,
+
+deliveryFrom:
+deliveryFrom,
+
+deliveryTo:
+deliveryTo,
+
+notes:
+notes,
+
+latitude:
+gpsData.latitude,
+
+longitude:
+gpsData.longitude,
+
+accuracy:
+gpsData.accuracy,
+
+googleMaps:
+"https://www.google.com/maps?q="+
+gpsData.latitude+
+","+
+gpsData.longitude,
+
+status:
+"pending",
+
+createdAt:
+Date.now()
+
+};
+
+
+const button =
+document.getElementById(
+"sendButton"
+);
+
+
+button.disabled=true;
+
+button.textContent=
+"⏳ جارٍ إرسال الطلب...";
+
+
+try{
+
+await set(
+
+ref(
+db,
+"orders/"+orderNumber
+),
+
+order
+
+);
+
+
+button.textContent=
+"✅ تم إرسال الطلب";
+
+
+showToast(
+"✅ تم إرسال الطلبية بنجاح"
+);
+
+
+document.getElementById(
+"result"
+).innerHTML=
+
+"✅ <strong>تم إرسال الطلبية بنجاح</strong><br><br>"+
+"رقم الطلبية: <strong>"+
+orderNumber+
+"</strong><br><br>"+
+"🚗 تم إرسالها مباشرة إلى السائق.";
+
+
+}catch(error){
+
+button.disabled=false;
+
+button.textContent=
+"🚀 إرسال الطلبية";
+
+
+document.getElementById(
+"result"
+).innerHTML=
+"❌ تعذر إرسال الطلب.<br><br>"+
+error.message;
+
+}
+
+};
+
+
+
+/* =========================
+   استقبال الطلبات الخاصة
+========================= */
+
+function listenOrders(){
+
+const ordersRef =
+ref(db,"orders");
+
+
+onValue(
+
+ordersRef,
+
+function(snapshot){
+
+orders =
+snapshot.val() || {};
+
+
+renderOrders();
+
+}
+
+);
+
+}
+
+
+
+/* =========================
+   عرض الطلب الحالي والأرشيف
+========================= */
+
+function renderOrders(){
+
+if(!currentUser)
+return;
+
+
+const mine =
+Object.values(orders)
+.filter(
+order =>
+order.customerUid ===
+currentUser.uid
+);
+
+
+mine.sort(
+(a,b)=>
+(b.createdAt||0)-
+(a.createdAt||0)
+);
+
+
+const active =
+mine.find(
+order =>
+order.status!=="delivered" &&
+order.status!=="cancelled"
+);
+
+
+const current =
+document.getElementById(
+"currentOrder"
+);
+
+
+if(active){
+
+current.innerHTML =
+createOrderView(active);
+
+}else{
+
+current.innerHTML =
+'<p class="muted">لا توجد طلبية نشطة حاليًا.</p>';
+
+}
+
+
+const archive =
+document.getElementById(
+"archive"
+);
+
+
+const oldOrders =
+mine.filter(
+order =>
+order.status==="delivered" ||
+order.status==="cancelled"
+);
+
+
+if(!oldOrders.length){
+
+archive.innerHTML =
+'<p class="muted">لا توجد طلبيات سابقة.</p>';
+
+}else{
+
+archive.innerHTML =
+oldOrders
+.map(createArchiveCard)
+.join("");
+
+}
+
+}
+
+
+
+/* =========================
+   حالة الطلب
+========================= */
+
+function getStatus(order){
+
+const data={
+
+pending:{
+icon:"⏳",
+title:"في انتظار السائق",
+text:"تم إرسال الطلب وننتظر قبول السائق."
+},
+
+accepted:{
+icon:"✅",
+title:"تم قبول الطلب",
+text:"السائق قبل طلبك."
+},
+
+picked_up:{
+icon:"📦",
+title:"تم استلام الطلب",
+text:"السائق استلم الطلب."
+},
+
+on_the_way:{
+icon:"🚗",
+title:"الطلب في الطريق",
+text:"السائق في طريقه لتسليم الطلب."
+},
+
+delivered:{
+icon:"🎉",
+title:"تم التسليم",
+text:"تم تسليم الطلب بنجاح."
+},
+
+cancelled:{
+icon:"❌",
+title:"تم إلغاء الطلب",
+text:"تم إلغاء الطلب."
+}
+
+};
+
+
+return data[order.status] || data.pending;
+
+}
+
+
+
+/* =========================
+   بطاقة الطلب الحالي
+========================= */
+
+function createOrderView(order){
+
+const status =
+getStatus(order);
+
+
+return `
+
+<div class="status">
+
+<div class="status-icon">
+${status.icon}
+</div>
+
+<div class="status-title">
+${status.title}
+</div>
+
+<p>
+${status.text}
+</p>
+
+<div class="muted">
+رقم الطلب:
+</div>
+
+<div class="order-number">
+${escapeHTML(order.id)}
+</div>
+
+</div>
+
+
+<div class="info">
+
+📅 التاريخ:
+${escapeHTML(order.deliveryDate)}
+
+<br>
+
+🕐 الوقت:
+${escapeHTML(order.deliveryFrom)}
+ -
+${escapeHTML(order.deliveryTo)}
+
+<br><br>
+
+👤 المستلم:
+${escapeHTML(order.receiverName)}
+
+<br>
+
+📞 الهاتف:
+${escapeHTML(order.receiverPhone)}
+
+<br><br>
+
+📍 دقة GPS:
+${Math.round(
+Number(order.accuracy||0)
+)}
+متر
+
+</div>
+
+
+<a
+class="map"
+href="${order.googleMaps}"
+target="_blank">
+
+🗺️ فتح موقع التسليم في Google Maps
+
+</a>
+
+
+${
+order.price!=null
+?
+`
+
+<div class="info">
+
+💵 سعر الطلب:
+<strong>
+${order.price} دج
+</strong>
+
+<br>
+
+🚚 التوصيل:
+<strong>
+${order.deliveryPrice} دج
+</strong>
+
+<br>
+
+💰 الإجمالي:
+<strong>
+${order.total} دج
+</strong>
+
+</div>
+
+`
+:
+""
+}
+
+
+${
+order.cancelReason
+?
+`
+
+<div class="info error">
+
+سبب الإلغاء:
+
+<br>
+
+${escapeHTML(order.cancelReason)}
+
+</div>
+
+`
+:
+""
+}
+
+`;
+
+}
+
+
+
+/* =========================
+   الأرشيف
+========================= */
+
+function createArchiveCard(order){
+
+const status =
+getStatus(order);
+
+
+return `
+
+<div class="order">
+
+<div class="order-number">
+📦 ${escapeHTML(order.id)}
+</div>
+
+<p>
+
+${status.icon}
+${status.title}
+
+</p>
+
+<p class="muted">
+
+📅 ${escapeHTML(order.deliveryDate)}
+
+<br>
+
+👤 ${escapeHTML(order.receiverName)}
+
+</p>
+
+
+${
+order.total!=null
+?
+"<strong>💰 "+
+order.total+
+" دج</strong>"
+:
+""
+}
+
+</div>
+
+`;
+
+}
+
+
+
+/* =========================
+   إعدادات الحساب
+========================= */
+
+window.toggleAccountSettings =
+function(){
+
+document
+.getElementById(
+"accountSettings"
+)
+.classList.toggle("hidden");
+
+};
+
+
+
+/* =========================
+   تطوير الحساب من مجهول
+========================= */
+
+window.upgradeAccount =
+async function(){
+
+if(!currentUser){
+
+showToast(
+"❌ الحساب غير جاهز."
+);
+
+return;
+
+}
+
+
+const email =
+document.getElementById(
+"accountEmail"
+).value.trim();
+
+
+const password =
+document.getElementById(
+"accountPassword"
+).value;
+
+
+if(!email||!password){
+
+showToast(
+"❌ أدخل البريد وكلمة المرور."
+);
+
+return;
+
+}
+
+
+if(password.length<6){
+
+showToast(
+"❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل."
+);
+
+return;
+
+}
+
+
+try{
+
+const credential =
+EmailAuthProvider.credential(
+email,
+password
+);
+
+
+await linkWithCredential(
+currentUser,
+credential
+);
+
+
+document.getElementById(
+"accountStatus"
+).textContent=
+"حساب مسجل";
+
+
+showToast(
+"✅ تم إنشاء بيانات الدخول بنجاح."
+);
+
+
+}catch(error){
+
+showToast(
+"❌ "+error.message
+);
+
+}
+
+};
+
+
+
+/* =========================
+   رقم الهاتف
+========================= */
+
+window.savePhone =
+function(){
+
+const phone =
+document.getElementById(
+"accountPhone"
+).value.trim();
+
+
+if(!phone){
+
+showToast(
+"❌ أدخل رقم الهاتف."
+);
+
+return;
+
+}
+
+
+localStorage.setItem(
+"alloJitekPhone",
+phone
+);
+
+
+showToast(
+"✅ تم حفظ رقم الهاتف."
+);
+
+};
+
+
+
+/* =========================
+   الإشعارات
+========================= */
+
+window.toggleNotifications =
+async function(){
+
+const enabled =
+document.getElementById(
+"notificationSwitch"
+).checked;
+
+
+if(enabled){
+
+if(
+"Notification" in window
+){
+
+const permission =
+await Notification.requestPermission();
+
+
+if(permission==="granted"){
+
+localStorage.setItem(
+"alloJitekNotifications",
+"on"
+);
+
+showToast(
+"🔔 تم تفعيل الإشعارات."
+);
+
+}else{
+
+document.getElementById(
+"notificationSwitch"
+).checked=false;
+
+showToast(
+"❌ لم يتم السماح بالإشعارات."
+);
+
+}
+
+}
+
+}else{
+
+localStorage.setItem(
+"alloJitekNotifications",
+"off"
+);
+
+showToast(
+"🔕 تم إيقاف الإشعارات."
+);
+
+}
+
+};
+
+
+
+/* =========================
+   إشعار تغير الحالة
+========================= */
+
+let previousStatuses={};
+
+
+function checkNotifications(){
+
+if(
+localStorage.getItem(
+"alloJitekNotifications"
+)!=="on"
+)
+return;
+
+
+if(
+Notification.permission!=="granted"
+)
+return;
+
+
+Object.values(orders)
+.filter(
+o =>
+currentUser &&
+o.customerUid===
+currentUser.uid
+)
+.forEach(function(order){
+
+const old =
+previousStatuses[order.id];
+
+
+if(
+old &&
+old!==order.status
+){
+
+const status =
+getStatus(order);
+
+
+new Notification(
+"آلو جيتك 🚗",
+{
+body:
+status.title+
+" — الطلب "+
+order.id
+}
+);
+
+}
+
+
+previousStatuses[order.id]=
+order.status;
+
+});
+
+}
+
+
+
+/* =========================
+   أدوات
+========================= */
+
+function showToast(message){
+
+const toast =
+document.getElementById(
+"toast"
+);
+
+toast.textContent =
+message;
+
+toast.style.display =
+"block";
+
+
+setTimeout(
+function(){
+
+toast.style.display =
+"none";
+
+},
+4000
+);
+
+}
+
+
+function escapeHTML(value){
+
+return String(
+value ?? ""
+)
+.replace(
+/[&<>"']/g,
+function(char){
+
+return {
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[char];
+
+}
+);
+
+}
+
+
+
+/* تشغيل حالة الإشعارات */
+
+if(
+localStorage.getItem(
+"alloJitekNotifications"
+)==="on"
+){
+
+document.getElementById(
+"notificationSwitch"
+).checked=true;
+
+}
+
+</script>
+
+</body>
+
+</html>

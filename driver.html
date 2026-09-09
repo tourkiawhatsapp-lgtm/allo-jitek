@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>آلو جيتك - السائق والإدارة</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    font-family:Arial,Tahoma,sans-serif;
+
+    background:#07111f;
+
+    color:white;
+
+    min-height:100vh;
+
+}
+
+.container{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:18px;
+
+}
+
+
+/* ======================
+   شاشة الدخول
+====================== */
+
+.login{
+
+    max-width:520px;
+
+    margin:50px auto;
+
+    text-align:center;
+
+}
+
+.car{
+
+    font-size:58px;
+
+}
+
+.logo{
+
+    color:#ff9f1c;
+
+    font-size:48px;
+
+    font-weight:bold;
+
+    margin:5px;
+
+}
+
+.login-title{
+
+    color:#ffd166;
+
+    font-size:22px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ======================
+   البطاقات
+====================== */
+
+.card{
+
+    background:#111f32;
+
+    border:1px solid #263852;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+    box-shadow:
+    0 8px 30px
+    rgba(0,0,0,.25);
+
+}
+
+.dashboard-header{
+
+    text-align:center;
+
+    padding:20px 0;
+
+}
+
+.dashboard-header .logo{
+
+    font-size:42px;
+
+}
+
+.subtitle{
+
+    color:#ffd166;
+
+    font-size:20px;
+
+}
+
+
+/* ======================
+   الاتصال
+====================== */
+
+.connection{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.connected{
+
+    color:#fff;
+
+    font-size:22px;
+
+}
+
+.dot{
+
+    display:inline-block;
+
+    width:20px;
+
+    height:20px;
+
+    background:#32d74b;
+
+    border-radius:50%;
+
+    box-shadow:
+    0 0 12px
+    #32d74b;
+
+}
+
+
+/* ======================
+   الأزرار
+====================== */
+
+button{
+
+    border:0;
+
+    border-radius:12px;
+
+    padding:13px 18px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.primary{
+
+    background:#ff9f1c;
+
+    color:#111;
+
+}
+
+.yellow{
+
+    background:#ffd166;
+
+    color:#111;
+
+}
+
+.dark{
+
+    background:#34465e;
+
+    color:white;
+
+}
+
+.green{
+
+    background:#57cc99;
+
+    color:#07111f;
+
+}
+
+.red{
+
+    background:#ff6b6b;
+
+    color:#111;
+
+}
+
+.blue{
+
+    background:#38bdf8;
+
+    color:#07111f;
+
+}
+
+
+/* ======================
+   الإحصائيات
+====================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.stat{
+
+    background:#0b1727;
+
+    border-radius:18px;
+
+    padding:25px 15px;
+
+    text-align:center;
+
+}
+
+.stat-title{
+
+    font-size:22px;
+
+}
+
+.stat-number{
+
+    color:#ffbd00;
+
+    font-size:40px;
+
+    font-weight:bold;
+
+    margin-top:8px;
+
+}
+
+.income{
+
+    grid-column:
+    1 / -1;
+
+}
+
+
+/* ======================
+   البحث
+====================== */
+
+.filters{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr 1fr;
+
+    gap:10px;
+
+}
+
+input,
+select{
+
+    background:#fff;
+
+    color:#222;
+
+    border:0;
+
+    border-radius:8px;
+
+    padding:13px;
+
+    font-size:16px;
+
+    width:100%;
+
+}
+
+
+/* ======================
+   الطلب
+====================== */
+
+.order{
+
+    background:#091522;
+
+    border:1px solid #304159;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    margin-top:15px;
+
+}
+
+.order-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+.order-id{
+
+    color:#ff9f1c;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.badge{
+
+    background:#334155;
+
+    border-radius:10px;
+
+    padding:7px 11px;
+
+}
+
+.order-info{
+
+    line-height:2;
+
+    color:#f1f5f9;
+
+}
+
+.map{
+
+    display:block;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    background:#ffd166;
+
+    color:#111;
+
+    padding:13px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+}
+
+
+/* ======================
+   الأسعار
+====================== */
+
+.price-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:10px;
+
+    margin-top:12px;
+
+}
+
+.price-grid input{
+
+    background:#fff;
+
+}
+
+
+/* ======================
+   أزرار الحالة
+====================== */
+
+.actions{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:8px;
+
+    margin-top:12px;
+
+}
+
+.actions button{
+
+    width:100%;
+
+}
+
+
+/* ======================
+   الإشعار
+====================== */
+
+.toast{
+
+    position:fixed;
+
+    bottom:20px;
+
+    right:20px;
+
+    left:20px;
+
+    max-width:500px;
+
+    margin:auto;
+
+    background:#ff9f1c;
+
+    color:#111;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    display:none;
+
+    z-index:9999;
+
+}
+
+
+/* ======================
+   متجاوب
+====================== */
+
+@media(max-width:700px){
+
+    .filters{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .actions{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+    .price-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .logo{
+
+        font-size:38px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ======================
+     تسجيل الدخول
+====================== -->
+
+<div
+id="loginScreen"
+class="card login">
+
+
+<div class="car">
+🚗
+</div>
+
+
+<div class="logo">
+آلو جيتك
+</div>
+
+
+<div class="login-title">
+لوحة السائق والإدارة
+</div>
+
+
+<input
+id="email"
+type="email"
+placeholder="البريد الإلكتروني"
+style="margin-bottom:10px;">
+
+
+<input
+id="password"
+type="password"
+placeholder="كلمة المرور"
+style="margin-bottom:10px;">
+
+
+<button
+class="primary"
+onclick="login()"
+style="width:100%;">
+
+🔐 تسجيل الدخول
+
+</button>
+
+
+<p
+id="loginMessage"
+style="color:#ff6b6b;">
+
+</p>
+
+</div>
+
+
+
+<!-- ======================
+     لوحة الإدارة
+====================== -->
+
+<div
+id="dashboard"
+style="display:none;">
+
+
+<div class="dashboard-header">
+
+<div class="car">
+🚗
+</div>
+
+<div class="logo">
+آلو جيتك
+</div>
+
+<div class="subtitle">
+لوحة السائق والإدارة
+</div>
+
+</div>
+
+
+
+<!-- الاتصال -->
+
+<div class="card">
+
+<div class="connection">
+
+<div>
+
+<div class="connected">
+
+النظام
+
+<span class="dot">
+</span>
+
+متصل
+
+</div>
+
+<p
+class="muted">
+
+حساب الإدارة المصرح له
+
+</p>
+
+</div>
+
+
+<div>
+
+<button
+class="yellow"
+onclick="enableNotifications()">
+
+🔔 تفعيل الإشعارات
+
+</button>
+
+
+<button
+class="dark"
+onclick="logout()">
+
+تسجيل الخروج
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ======================
+     الإحصائيات
+====================== -->
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="stat-title">
+كل الطلبات
+</div>
+
+<div
+id="totalOrders"
+class="stat-number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+في الانتظار
+</div>
+
+<div
+id="pendingOrders"
+class="stat-number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+في الطريق
+</div>
+
+<div
+id="onWayOrders"
+class="stat-number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-title">
+تم التسليم
+</div>
+
+<div
+id="deliveredOrders"
+class="stat-number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="stat income">
+
+<div class="stat-title">
+مجموع المحصل
+</div>
+
+<div
+id="totalIncome"
+class="stat-number">
+
+0 دج
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ======================
+     البحث والفلاتر
+====================== -->
+
+<div class="card">
+
+<div class="filters">
+
+
+<input
+id="search"
+placeholder="🔎 رقم الطلب أو الهاتف"
+oninput="renderOrders()">
+
+
+
+<select
+id="statusFilter"
+onchange="renderOrders()">
+
+<option value="">
+كل الحالات
+</option>
+
+<option value="pending">
+في الانتظار
+</option>
+
+<option value="accepted">
+مقبول
+</option>
+
+<option value="picked_up">
+تم الاستلام
+</option>
+
+<option value="on_the_way">
+في الطريق
+</option>
+
+<option value="delivered">
+تم التسليم
+</option>
+
+<option value="cancelled">
+ملغى
+</option>
+
+</select>
+
+
+
+<select
+id="sortFilter"
+onchange="renderOrders()">
+
+<option value="new">
+الأحدث أولاً
+</option>
+
+<option value="old">
+الأقدم أولاً
+</option>
+
+</select>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ======================
+     الطلبات
+====================== -->
+
+<div
+id="ordersContainer">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div
+id="toast"
+class="toast">
+
+</div>
+
+
+
+<script type="module">
+
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+
+getAuth,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+
+getDatabase,
+ref,
+onValue,
+update
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyAKnV99bchvO980FrUP1xlyPIb6QXJJe5U",
+
+authDomain:
+"allo-jitek-eloued.firebaseapp.com",
+
+databaseURL:
+"https://allo-jitek-eloued-default-rtdb.firebaseio.com",
+
+projectId:
+"allo-jitek-eloued",
+
+storageBucket:
+"allo-jitek-eloued.firebasestorage.app",
+
+messagingSenderId:
+"16290625978",
+
+appId:
+"1:16290625978:web:79b138fd59305cac8ec583"
+
+};
+
+
+const ADMIN_UID =
+"0SPkitFLSNPWKRxzkTIzJ5MWgnG3";
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getDatabase(app);
+
+
+let orders={};
+
+let firstLoad=true;
+
+
+
+/* =========================
+   تسجيل الدخول
+========================= */
+
+window.login =
+async function(){
+
+const email =
+document.getElementById(
+"email"
+).value.trim();
+
+
+const password =
+document.getElementById(
+"password"
+).value;
+
+
+if(!email||!password){
+
+document.getElementById(
+"loginMessage"
+).textContent=
+"❌ أدخل البريد وكلمة المرور.";
+
+return;
+
+}
+
+
+try{
+
+const result =
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+if(
+result.user.uid !==
+ADMIN_UID
+){
+
+await signOut(auth);
+
+throw new Error(
+"هذا الحساب ليس حساب السائق المصرح له."
+);
+
+}
+
+
+}catch(error){
+
+document.getElementById(
+"loginMessage"
+).textContent=
+"❌ "+error.message;
+
+}
+
+};
+
+
+
+/* =========================
+   مراقبة الدخول
+========================= */
+
+onAuthStateChanged(
+
+auth,
+
+function(user){
+
+if(
+user &&
+user.uid===ADMIN_UID
+){
+
+document.getElementById(
+"loginScreen"
+).style.display=
+"none";
+
+
+document.getElementById(
+"dashboard"
+).style.display=
+"block";
+
+
+listenOrders();
+
+}
+
+});
+
+
+
+/* =========================
+   استقبال الطلبات فورًا
+========================= */
+
+function listenOrders(){
+
+const ordersRef =
+ref(db,"orders");
+
+
+onValue(
+
+ordersRef,
+
+function(snapshot){
+
+const previous =
+orders;
+
+
+orders =
+snapshot.val() || {};
+
+
+if(!firstLoad){
+
+const oldIds =
+Object.keys(previous);
+
+
+const newIds =
+Object.keys(orders)
+.filter(
+id=>!oldIds.includes(id)
+);
+
+
+if(newIds.length){
+
+const newOrder =
+orders[newIds[0]];
+
+
+showToast(
+"🚨 وصلت طلبية جديدة!"
+);
+
+
+sendBrowserNotification(
+"🚨 طلبية جديدة",
+"وصلت طلبية رقم "+
+newOrder.id
+);
+
+}
+
+}
+
+
+firstLoad=false;
+
+
+updateStatistics();
+
+renderOrders();
+
+},
+
+function(error){
+
+showToast(
+"❌ خطأ قاعدة البيانات: "+
+error.message
+);
+
+}
+
+);
+
+}
+
+
+
+/* =========================
+   الإحصائيات
+========================= */
+
+function updateStatistics(){
+
+const list =
+Object.values(orders);
+
+
+const pending =
+list.filter(
+o=>o.status==="pending"
+).length;
+
+
+const onWay =
+list.filter(
+o=>o.status==="on_the_way"
+).length;
+
+
+const delivered =
+list.filter(
+o=>o.status==="delivered"
+).length;
+
+
+let income=0;
+
+
+list.forEach(function(order){
+
+if(order.status==="delivered"){
+
+income +=
+Number(order.total||0);
+
+}
+
+});
+
+
+document.getElementById(
+"totalOrders"
+).textContent=
+list.length;
+
+
+document.getElementById(
+"pendingOrders"
+).textContent=
+pending;
+
+
+document.getElementById(
+"onWayOrders"
+).textContent=
+onWay;
+
+
+document.getElementById(
+"deliveredOrders"
+).textContent=
+delivered;
+
+
+document.getElementById(
+"totalIncome"
+).textContent=
+income+" دج";
+
+}
+
+
+
+/* =========================
+   عرض الطلبات
+========================= */
+
+window.renderOrders =
+function(){
+
+let list =
+Object.values(orders);
+
+
+const search =
+document.getElementById(
+"search"
+).value
+.trim()
+.toLowerCase();
+
+
+const filter =
+document.getElementById(
+"statusFilter"
+).value;
+
+
+const sort =
+document.getElementById(
+"sortFilter"
+).value;
+
+
+list =
+list.filter(function(order){
+
+const text =
+String(order.id)
+.toLowerCase()
++
+" "+
+String(order.receiverPhone)
+.toLowerCase();
+
+
+const searchOK =
+!search ||
+text.includes(search);
+
+
+const statusOK =
+!filter ||
+order.status===filter;
+
+
+return searchOK && statusOK;
+
+});
+
+
+list.sort(function(a,b){
+
+return sort==="new"
+
+?
+(b.createdAt||0)-
+(a.createdAt||0)
+
+:
+
+(a.createdAt||0)-
+(b.createdAt||0);
+
+});
+
+
+const container =
+document.getElementById(
+"ordersContainer"
+);
+
+
+if(!list.length){
+
+container.innerHTML=
+`
+
+<div class="card"
+style="text-align:center;">
+
+لا توجد طلبات.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+container.innerHTML =
+list
+.map(createOrderCard)
+.join("");
+
+};
+
+
+
+/* =========================
+   بطاقة الطلب
+========================= */
+
+function createOrderCard(order){
+
+const names={
+
+pending:
+"⏳ في الانتظار",
+
+accepted:
+"✅ مقبول",
+
+picked_up:
+"📦 تم الاستلام",
+
+on_the_way:
+"🚗 في الطريق",
+
+delivered:
+"🎉 تم التسليم",
+
+cancelled:
+"❌ ملغى"
+
+};
+
+
+return `
+
+<div class="card order">
+
+
+<div class="order-header">
+
+<div class="order-id">
+
+📦 ${escapeHTML(order.id)}
+
+</div>
+
+
+<div class="badge">
+
+${names[order.status]||order.status}
+
+</div>
+
+</div>
+
+
+
+<div class="order-info">
+
+<br>
+
+👤 المرسل:
+<strong>
+${escapeHTML(order.senderName)}
+</strong>
+
+<br>
+
+👤 المستلم:
+<strong>
+${escapeHTML(order.receiverName)}
+</strong>
+
+<br>
+
+📞 الهاتف:
+<strong>
+${escapeHTML(order.receiverPhone)}
+</strong>
+
+<br>
+
+📅 التاريخ:
+<strong>
+${escapeHTML(order.deliveryDate)}
+</strong>
+
+<br>
+
+🕐 الوقت:
+<strong>
+${escapeHTML(order.deliveryFrom)}
+</strong>
+
+إلى
+
+<strong>
+${escapeHTML(order.deliveryTo)}
+</strong>
+
+<br>
+
+📍 خط العرض:
+${order.latitude}
+
+<br>
+
+📍 خط الطول:
+${order.longitude}
+
+<br>
+
+🎯 دقة GPS:
+${Math.round(
+Number(order.accuracy||0)
+)}
+متر
+
+</div>
+
+
+
+<a
+class="map"
+href="${order.googleMaps}"
+target="_blank">
+
+🗺️ فتح موقع المستلم في Google Maps
+
+</a>
+
+
+
+<div class="order-info">
+
+📝 الملاحظات:
+
+<br>
+
+${escapeHTML(
+order.notes ||
+"لا توجد ملاحظات"
+)}
+
+</div>
+
+
+
+<!-- الأسعار -->
+
+<div class="price-grid">
+
+<input
+id="price-${order.id}"
+type="number"
+min="0"
+placeholder="💵 سعر الطلب"
+value="${order.price ?? ""}">
+
+
+<input
+id="delivery-${order.id}"
+type="number"
+min="0"
+placeholder="🚚 سعر التوصيل"
+value="${order.deliveryPrice ?? ""}">
+
+</div>
+
+
+<button
+class="yellow"
+style="width:100%;margin-top:8px;"
+onclick="savePrice('${order.id}')">
+
+💰 حفظ السعر وحساب الإجمالي
+
+</button>
+
+
+
+${
+order.total!=null
+?
+`
+
+<div
+class="info"
+style="margin-top:10px;">
+
+💵 سعر الطلب:
+<strong>
+${order.price} دج
+</strong>
+
+<br>
+
+🚚 سعر التوصيل:
+<strong>
+${order.deliveryPrice} دج
+</strong>
+
+<br>
+
+💰 الإجمالي:
+<strong>
+${order.total} دج
+</strong>
+
+</div>
+
+`
+:
+""
+}
+
+
+
+<!-- الحالات -->
+
+<div class="actions">
+
+
+<button
+class="yellow"
+onclick="changeStatus(
+'${order.id}',
+'accepted'
+)">
+
+✅ قبول
+
+</button>
+
+
+<button
+class="dark"
+onclick="changeStatus(
+'${order.id}',
+'picked_up'
+)">
+
+📦 تم الاستلام
+
+</button>
+
+
+<button
+class="primary"
+onclick="changeStatus(
+'${order.id}',
+'on_the_way'
+)">
+
+🚗 في الطريق
+
+</button>
+
+
+<button
+class="green"
+onclick="changeStatus(
+'${order.id}',
+'delivered'
+)">
+
+🎉 تم التسليم
+
+</button>
+
+
+<button
+class="red"
+onclick="cancelOrder(
+'${order.id}'
+)">
+
+❌ رفض / إلغاء
+
+</button>
+
+
+</div>
+
+
+
+${
+order.cancelReason
+?
+`
+
+<div
+class="info"
+style="color:#ff6b6b;">
+
+سبب الإلغاء:
+
+<br>
+
+${escapeHTML(
+order.cancelReason
+)}
+
+</div>
+
+`
+:
+""
+}
+
+
+</div>
+
+`;
+
+}
+
+
+
+/* =========================
+   حفظ الأسعار
+========================= */
+
+window.savePrice =
+async function(id){
+
+const price =
+Number(
+document.getElementById(
+"price-"+id
+).value || 0
+);
+
+
+const deliveryPrice =
+Number(
+document.getElementById(
+"delivery-"+id
+).value || 0
+);
+
+
+const total =
+price+
+deliveryPrice;
+
+
+try{
+
+await update(
+
+ref(
+db,
+"orders/"+id
+),
+
+{
+
+price:
+price,
+
+deliveryPrice:
+deliveryPrice,
+
+total:
+total,
+
+updatedAt:
+Date.now()
+
+}
+
+);
+
+
+showToast(
+"✅ تم حفظ الأسعار"
+);
+
+
+}catch(error){
+
+showToast(
+"❌ "+error.message
+);
+
+}
+
+};
+
+
+
+/* =========================
+   تغيير الحالة
+========================= */
+
+window.changeStatus =
+async function(id,status){
+
+try{
+
+await update(
+
+ref(
+db,
+"orders/"+id
+),
+
+{
+
+status:
+status,
+
+updatedAt:
+Date.now()
+
+}
+
+);
+
+
+showToast(
+"✅ تم تحديث حالة الطلب"
+);
+
+
+}catch(error){
+
+showToast(
+"❌ "+error.message
+);
+
+}
+
+};
+
+
+
+/* =========================
+   الإلغاء
+========================= */
+
+window.cancelOrder =
+async function(id){
+
+const reason =
+prompt(
+"اكتب سبب الرفض أو الإلغاء:"
+);
+
+
+if(reason===null)
+return;
+
+
+if(!reason.trim()){
+
+showToast(
+"❌ يجب كتابة السبب."
+);
+
+return;
+
+}
+
+
+try{
+
+await update(
+
+ref(
+db,
+"orders/"+id
+),
+
+{
+
+status:
+"cancelled",
+
+cancelReason:
+reason.trim(),
+
+updatedAt:
+Date.now()
+
+}
+
+);
+
+
+showToast(
+"✅ تم إلغاء الطلب"
+);
+
+
+}catch(error){
+
+showToast(
+"❌ "+error.message
+);
+
+}
+
+};
+
+
+
+/* =========================
+   إشعارات السائق
+========================= */
+
+window.enableNotifications =
+async function(){
+
+if(
+!("Notification" in window)
+){
+
+showToast(
+"المتصفح لا يدعم الإشعارات."
+);
+
+return;
+
+}
+
+
+const permission =
+await Notification.requestPermission();
+
+
+if(permission==="granted"){
+
+showToast(
+"🔔 تم تفعيل الإشعارات."
+);
+
+sendBrowserNotification(
+"آلو جيتك 🚗",
+"الإشعارات مفعلة بنجاح."
+);
+
+}else{
+
+showToast(
+"❌ لم يتم السماح بالإشعارات."
+);
+
+}
+
+};
+
+
+function sendBrowserNotification(
+title,
+body
+){
+
+if(
+"Notification" in window &&
+Notification.permission==="granted"
+){
+
+new Notification(
+title,
+{
+body:body
+}
+);
+
+}
+
+}
+
+
+
+/* =========================
+   خروج
+========================= */
+
+window.logout =
+function(){
+
+signOut(auth);
+
+};
+
+
+
+/* =========================
+   حماية النص
+========================= */
+
+function escapeHTML(value){
+
+return String(
+value ?? ""
+)
+.replace(
+/[&<>"']/g,
+function(char){
+
+return {
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[char];
+
+}
+);
+
+}
+
+</script>
+
+</body>
+
+</html>
